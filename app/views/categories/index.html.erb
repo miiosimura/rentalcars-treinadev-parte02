@@ -1,4 +1,5 @@
 <h1>Categorias de locação</h1>
+<%= link_to('Criar Nova Categoria', new_category_path) %>
 <% if @categories.any? %>
 <table class='table table-striped mt-1 mb-1'>
   <thead class='thead-dark'>
@@ -13,7 +14,7 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= category.name %></td>
+        <td><%= link_to category.name, category_path(category) %></td>
         <td><%= number_to_currency(category.daily_rate) %></td>
         <td><%= number_to_currency(category.car_insurance) %></td>
         <td><%= number_to_currency(category.third_party_insurance) %></td>

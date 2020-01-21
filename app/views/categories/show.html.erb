@@ -1,0 +1,8 @@
+<h1>Mostrar Categoria</h1>
+<%= link_to 'Editar', edit_category_path(@category) %>
+<ul>
+  <li><%= "#{Category.human_attribute_name(:name)}: #{@category.name}" %></li>
+  <li><%= "#{Category.human_attribute_name(:daily_rate)}: #{number_to_currency(@category.daily_rate)}" %></li>
+  <li><%= "#{Category.human_attribute_name(:car_insurance)}: #{number_to_currency(@category.car_insurance)}" %></li>
+  <li><%= "#{Category.human_attribute_name(:third_party_insurance)}: #{number_to_currency(@category.third_party_insurance)}" %></li>
+</ul>
