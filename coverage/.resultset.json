@@ -1,15 +1,6 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/category.rb": [
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        null
-      ],
       "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/controllers/home_controller.rb": [
         1,
         1,
@@ -20,7 +11,7 @@
         1,
         null,
         1,
-        5,
+        4,
         null,
         null,
         1,
@@ -37,7 +28,19 @@
         null,
         null,
         1,
-        2,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null,
         null,
         1,
@@ -53,23 +56,20 @@
         null,
         null,
         1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
         null,
         1,
         1,
         null,
         null,
+        null
+      ],
+      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/category.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
         null
       ],
       "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/mailers/application_mailer.rb": [
@@ -1008,6 +1008,6 @@
         0
       ]
     },
-    "timestamp": 1579568666
+    "timestamp": 1579569579
   }
 }
