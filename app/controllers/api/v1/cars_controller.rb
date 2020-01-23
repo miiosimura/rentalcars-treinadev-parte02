@@ -10,11 +10,20 @@ class Api::V1::CarsController < Api::V1::ApiController
   end
 
   def show
-    if Car.where(id: params[:id]).present?
-      @car = Car.find(params[:id])
-      render json: @car
-    else
-      render status: :not_found, json: ''
-    end
+    @car = Car.find(params[:id])
+    render json: @car
+  end
+
+  def create
+    @car = Car.create!(params.permit(%i[car_model_id car_km color license_plate 
+                                       status subsidiary_id]))
+    render json: @car, status: :created
+  end
+
+  def update
+    @car = Car.find(params[:id])
+    @car.update!(params.permit(%i[car_model_id car_km color license_plate 
+                                  status subsidiary_id]))
+    render json: @car, status: :ok
   end
 end

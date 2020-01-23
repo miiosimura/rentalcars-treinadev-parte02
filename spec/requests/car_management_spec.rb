@@ -48,4 +48,106 @@ describe 'Car Management', type: :request do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  context 'create' do
+    it 'create new car' do
+      car_model = create(:car_model)
+      subsidiary = create(:subsidiary)
+      car_count = Car.count
+
+      post api_v1_cars_path, params: {car_model_id: car_model.id, car_km: 5000, license_plate: 'ABC1234', 
+                                      color: 'Azul', status: 'available', subsidiary_id: subsidiary.id}
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(:created)
+      expect(json[:car_model_id]).to eq(car_model.id)
+      expect(json[:car_km]).to eq(5000)
+      expect(json[:license_plate]).to eq('ABC1234')
+      expect(json[:color]).to eq('Azul')
+      expect(json[:status]).to eq('available')
+      expect(json[:subsidiary_id]).to eq(subsidiary.id)
+      expect(Car.count).to eq(car_count + 1)
+    end
+
+    it 'didnt filled all fields' do
+      post api_v1_cars_path, params: {}
+
+      expect(response).to have_http_status(:precondition_failed)
+      expect(response.body).to include('A validação falhou:')
+      expect(response.body).to include('Modelo é obrigatório')
+      expect(response.body).to include('Filial é obrigatório(a)')
+      expect(response.body).to include('Quilometragem não pode ficar em branco')
+      expect(response.body).to include('Cor não pode ficar em branco')
+      expect(response.body).to include('Placa não pode ficar em branco')
+    end
+
+    it 'didnt filled any field' do
+      car_model = create(:car_model)
+
+      post api_v1_cars_path, params: {car_model_id: car_model.id, car_km: 5000, license_plate: 'ABC1234'}
+
+      expect(response).to have_http_status(:precondition_failed)
+      expect(response.body).to include('A validação falhou:')
+      expect(response.body).to include('Filial é obrigatório(a)')
+      expect(response.body).to include('Cor não pode ficar em branco')
+      expect(response.body).not_to include('Modelo é obrigatório')
+      expect(response.body).not_to include('Quilometragem não pode ficar em branco')
+      expect(response.body).not_to include('Placa não pode ficar em branco')
+    end
+  end
+
+  context 'update' do
+    it 'update car' do
+      car = create(:car)
+      car_model = create(:car_model, name: 'Hatch')
+      subsidiary = create(:subsidiary, name: 'Moratinho Motors')
+      car_count = Car.count
+
+      put api_v1_car_path(car.id), params: {car_model_id: car_model.id, car_km: 5000, license_plate: 'ABC1234', 
+                                            color: 'Azul', status: 'unavailable', subsidiary_id: subsidiary.id}
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(:ok)
+      expect(json[:car_model_id]).to eq(car_model.id)
+      expect(json[:car_km]).to eq(5000)
+      expect(json[:license_plate]).to eq('ABC1234')
+      expect(json[:color]).to eq('Azul')
+      expect(json[:status]).to eq('unavailable')
+      expect(json[:subsidiary_id]).to eq(subsidiary.id)
+      expect(Car.count).to eq(car_count)
+    end
+
+    it 'and filled only one field' do
+      car = create(:car)
+
+      put api_v1_car_path(car.id), params: { car_km: 99999 }
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(:ok)
+      expect(json[:car_km]).to eq(99999)
+    end
+
+    it 'and tried to fill in with empty fields' do
+      car = create(:car)
+      car_count = Car.count
+
+      put api_v1_car_path(car.id), params: {car_model_id: '', car_km: '', license_plate: '', 
+                                            color: '', status: '', subsidiary_id: ''}
+
+      expect(response).to have_http_status(:precondition_failed)
+      expect(response.body).to include('A validação falhou:')
+      expect(response.body).to include('Filial é obrigatório(a)')
+      expect(response.body).to include('Cor não pode ficar em branco')
+      expect(response.body).to include('Modelo é obrigatório')
+      expect(response.body).to include('Quilometragem não pode ficar em branco')
+      expect(response.body).to include('Placa não pode ficar em branco')
+      expect(Car.count).to eq(car_count)
+    end
+
+    it 'doesnt have a car' do
+      put api_v1_car_path(id: 999)
+
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
