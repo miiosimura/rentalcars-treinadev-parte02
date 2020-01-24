@@ -21,6 +21,7 @@ describe 'Car Management', type: :request do
       get api_v1_car_path(id: 999)
 
       expect(response).to have_http_status(:not_found)
+      expect(response.body).to eq('Registro não encontrado')
     end
   end
 
@@ -148,6 +149,40 @@ describe 'Car Management', type: :request do
       put api_v1_car_path(id: 999)
 
       expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  context 'delete' do
+    it 'should delete a car' do
+      @car = create(:car)
+      car_count = Car.count
+
+      delete api_v1_car_path(@car.id)
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to eq('Carro apagado com sucesso!')
+      expect(Car.find_by(id: @car.id)).to eq(nil)
+      expect(Car.count).to eq(car_count - 1)
+    end
+
+    it 'should delete a car and database is down' do
+      allow_any_instance_of(Car).to receive(:delete).and_raise(ActiveRecord::ActiveRecordError)
+      @car = create(:car)
+      car_count = Car.count
+
+      delete api_v1_car_path(@car.id)
+
+      expect(response).to have_http_status(:internal_server_error)
+      expect(response.body).to eq('Erro no banco')
+      expect(Car.find(@car.id)).to eq(@car)
+      expect(Car.count).to eq(car_count)
+    end
+
+    it 'tried to delete an inexistent car' do
+      delete api_v1_car_path(999)
+
+      expect(response).to have_http_status(:not_found)
+      expect(response.body).to eq('Registro não encontrado')
     end
   end
 end

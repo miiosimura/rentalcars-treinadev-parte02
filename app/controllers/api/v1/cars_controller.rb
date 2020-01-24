@@ -26,4 +26,11 @@ class Api::V1::CarsController < Api::V1::ApiController
                                   status subsidiary_id]))
     render json: @car, status: :ok
   end
+  
+  def destroy
+    @car = Car.find(params[:id])
+    if @car.delete
+      render json: 'Carro apagado com sucesso!', status: :ok
+    end
+  end
 end

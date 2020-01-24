@@ -7,4 +7,10 @@ class CarModel < ApplicationRecord
   validates :name, presence: true
   validates :year, presence: true
   validates :car_options, presence: true
+
+  def fipe_price
+    response = HTTParty.get('/api/1/carros/veiculo/21/4828/2014-1.json')
+    puts response.body
+    puts response.body['preco']
+  end
 end

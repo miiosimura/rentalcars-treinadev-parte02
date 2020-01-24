@@ -15,6 +15,7 @@ gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'sqlite3'
 gem 'uglifier', '>= 1.3.0'
+gem 'httparty', '~> 0.17.3'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

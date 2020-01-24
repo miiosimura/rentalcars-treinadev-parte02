@@ -1,92 +1,44 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/controllers/api/v1/cars_controller.rb": [
+      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/car_model.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         1,
         null,
         1,
-        0,
-        0,
-        0,
-        null,
-        0,
-        null,
-        null,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        0,
-        null,
-        null,
         1,
         1,
-        0,
-        null,
-        0,
+        1,
         null,
         null
       ],
-      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/controllers/api/v1/api_controller.rb": [
+      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/manufacture.rb": [
         1,
         1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        0,
-        null,
         null
       ],
-      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/car.rb": [
+      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/fuel_type.rb": [
         1,
         1,
+        null
+      ],
+      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/category.rb": [
         1,
         1,
-        1,
-        1,
+        null,
         1,
         1,
         1,
         null
       ],
       "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/mailers/application_mailer.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/manufacture.rb": [
-        0,
-        0,
-        0
-      ],
-      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/category.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/car_model.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
         0,
         0,
         0,
@@ -119,6 +71,18 @@
         0
       ],
       "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/rental_price.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/car.rb": [
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -229,11 +193,6 @@
         0,
         null,
         0,
-        0,
-        0,
-        0
-      ],
-      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/models/fuel_type.rb": [
         0,
         0,
         0
@@ -945,6 +904,65 @@
         0,
         0
       ],
+      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/controllers/api/v1/cars_controller.rb": [
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/controllers/api/v1/api_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0
+      ],
       "/Users/treinadev06/treinadev/rentalcars-treinadev-parte02/app/controllers/rental_prices_controller.rb": [
         0,
         0,
@@ -1055,6 +1073,6 @@
         0
       ]
     },
-    "timestamp": 1579741536
+    "timestamp": 1579828284
   }
 }
