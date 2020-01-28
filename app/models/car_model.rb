@@ -10,7 +10,5 @@ class CarModel < ApplicationRecord
 
   def fipe_price
     response = HTTParty.get('/api/1/carros/veiculo/21/4828/2014-1.json')
-    puts response.body
-    puts response.body['preco']
   end
 end

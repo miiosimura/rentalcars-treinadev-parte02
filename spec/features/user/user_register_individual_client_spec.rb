@@ -66,4 +66,30 @@ feature 'User register individual client' do
 
     expect(current_path).to eq new_user_session_path
   end
+
+  scenario 'and client receive mail confirm' do
+    user = create(:user, role: :user)
+    mailer_spy = class_spy(IndividualClientMailer)
+    stub_const('IndividualClientMailer', mailer_spy)
+
+    login_as user, scope: :user
+
+    visit root_path
+    click_on 'Clientes individuais'
+    click_on 'Registrar cliente individual'
+    fill_in 'Nome', with: 'Apolônio'
+    fill_in 'CPF', with: '632.254.740-29'
+    fill_in 'E-mail', with: 'apolonio@email.com'
+    fill_in 'Logradouro', with: 'Vila do Chaves'
+    fill_in 'Número', with: '71'
+    fill_in 'Complemento', with: 'Dentro do barril'
+    fill_in 'Bairro', with: 'México'
+    fill_in 'Cidade', with: 'São Paulo'
+    fill_in 'Estado', with: 'SP'
+    click_on 'Enviar'
+
+    client = IndividualClient.last
+
+    expect(IndividualClientMailer).to have_received(:confirm).with(client.id)
+  end
 end
