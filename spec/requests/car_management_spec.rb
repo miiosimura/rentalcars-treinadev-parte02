@@ -55,9 +55,11 @@ describe 'Car Management', type: :request do
       car_model = create(:car_model)
       subsidiary = create(:subsidiary)
       car_count = Car.count
-
+      
       post api_v1_cars_path, params: {car_model_id: car_model.id, car_km: 5000, license_plate: 'ABC1234', 
-                                      color: 'Azul', status: 'available', subsidiary_id: subsidiary.id}
+                                      color: 'Azul', status: 'available', subsidiary_id: subsidiary.id,
+                                      photo: 'https://http.cat/404.jpg'}
+
       json = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to have_http_status(:created)
@@ -67,6 +69,8 @@ describe 'Car Management', type: :request do
       expect(json[:color]).to eq('Azul')
       expect(json[:status]).to eq('available')
       expect(json[:subsidiary_id]).to eq(subsidiary.id)
+      expect(json[:photo]).to match(/wip/)
+      # http://www.example.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a83fa1b764a68f1ddf631b7c75df21620ddaaca3/404.jpg  
       expect(Car.count).to eq(car_count + 1)
     end
 

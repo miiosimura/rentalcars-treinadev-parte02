@@ -1,3 +1,4 @@
+require "open-uri"
 class Api::V1::CarsController < Api::V1::ApiController
 
   def index
@@ -17,6 +18,13 @@ class Api::V1::CarsController < Api::V1::ApiController
   def create
     @car = Car.create!(params.permit(%i[car_model_id car_km color license_plate 
                                        status subsidiary_id]))
+    # @car.photo.attach(params[:photo])
+    photo_url = params.permit(:photo)["photo"]
+    @car.photo.attach(
+        io: open(photo_url),
+        filename: photo_url.split('/')[-1]
+      )
+    puts url_for(@car.photo)
     render json: @car, status: :created
   end
 
